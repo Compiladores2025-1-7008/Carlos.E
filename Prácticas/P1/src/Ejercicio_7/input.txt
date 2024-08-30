@@ -1,0 +1,4 @@
+0x12A 0xF
+if int primero1 else int segundo2
+1identificador
+identificadornovalidoporqueesmuylargoparapoderseruno2024 
