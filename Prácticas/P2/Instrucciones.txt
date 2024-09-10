@@ -1,0 +1,13 @@
+Para usar el archivo build.xml primero debe tener alguna distribución
+de ANT instalada.
+
+Sustituya el valor de "executable" con la ruta de su jflex.bat en el archivo -->
+        <exec executable="C:\jflex-1.9.1\bin\jflex.bat">
+            <arg value="${jflex.dir}/Lexer.flex"/>
+        </exec>
+
+COMANDOS:
+clean: borra los antiguos resultados de compilación del Lexer.
+grammar: Compila el archivo Lexer.flex
+compila: Compila los archivos .java
+run: Genera los resultados del Lexer con la prueba predefinida.

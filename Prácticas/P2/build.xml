@@ -1,0 +1,40 @@
+<project name="Practica_2" default="compile" basedir=".">
+    
+    <!-- Definir las propiedades -->
+    <property name="src.dir" location="src"/>
+    <property name="jflex.dir" location="src/main/jflex"/>
+    <property name="build.dir" location="build"/>
+    <property name="input.file" value="prueba.txt"/> <!-- Archivo de entrada para el lexer -->
+    <property name="main.class" value="main.jflex.Lexer"/> <!-- La clase principal generada por JFlex -->
+
+
+    <!-- Limpiar el archivo Lexer.java generado -->
+    <target name="clean">
+        <delete file="${jflex.dir}/Lexer.java"/>
+        <delete file="${jflex.dir}/Lexer.java~"/>
+    </target>
+
+    <!-- Ejecutar JFlex como un comando del sistema -->
+    <target name="grammar" depends="clean">
+        <!-- Sustituir con la ruta de su jflex.bat -->
+        <exec executable="C:\jflex-1.9.1\bin\jflex.bat">
+            <arg value="${jflex.dir}/Lexer.flex"/>
+        </exec>
+    </target>
+
+    <!-- Compilar los archivos .java, incluyendo el Lexer generado -->
+    <target name="compile" depends="jflex">
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="true">
+            <include name="main/jflex/Lexer.java"/>
+            <include name="**/*.java"/> <!-- Incluye todas las clases Java -->
+        </javac>
+    </target>
+
+     <!-- Ejecutar el lexer con el archivo de entrada -->
+     <target name="run" depends="compile">
+        <java classname="${main.class}" classpath="${build.dir}">
+            <arg value="${input.file}"/>
+        </java>
+    </target>
+  
+</project>
